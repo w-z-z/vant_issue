@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 10:56:06
- * @LastEditTime: 2020-10-15 13:44:19
+ * @LastEditTime: 2020-10-15 14:48:24
  * @LastEditors: ranli
 -->
 
@@ -34,7 +34,18 @@
         </p>
       </div>
     </confirmDialog>
-    <confirmDialog v-model="visible" :params="dialogParams"> </confirmDialog>
+    <confirmDialog v-model="visible" :params="dialogParams" @confirm="confirm">
+      <div class="confirm-userinfo">
+        <div
+          v-for="(value, key) in info"
+          :key="key"
+          class="confirm-userinfo-list"
+        >
+          <span>{{ infoList[key].title }}：</span>
+          <span>{{ value }}</span>
+        </div>
+      </div>
+    </confirmDialog>
   </div>
 </template>
 
@@ -45,6 +56,9 @@ import confirmDialog from "@/components/dialog.vue";
 @Component({
   components: { confirmDialog },
   methods: {
+    confirm() {
+      (this as any).visible2 = true;
+    },
     submitInfo() {
       let done = true;
       for (const key in (this as any).info) {
@@ -65,7 +79,7 @@ import confirmDialog from "@/components/dialog.vue";
             };
           }
         }
-        (this as any).visible2 = true;
+        (this as any).visible = true;
       }
     },
   },
@@ -134,7 +148,7 @@ export default class Withdraw extends Vue {
     cancel: false,
     confirm: {
       show: true,
-      text: "OK",
+      text: "ok",
     },
   };
   @Provide() private ConfirmData = {};

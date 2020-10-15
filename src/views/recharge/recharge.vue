@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 10:56:06
- * @LastEditTime: 2020-10-15 13:40:18
+ * @LastEditTime: 2020-10-15 15:04:13
  * @LastEditors: ranli
 -->
 <template>
@@ -72,9 +72,10 @@ export default class Dialog extends Vue {
 .recharge {
   min-height: calc(100vh - 1rem);
   .recharge-way {
-    background-image: url("./../../assets/bg.png");
-    background-size: cover;
+    background-image: url("./../../assets/bg.jpg");
+    background-size: 100% 100%;
     height: 2rem;
+    background-repeat: no-repeat;
   }
   .recharge-content {
     margin: -1rem auto 0 auto;

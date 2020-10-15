@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 16:39:07
- * @LastEditTime: 2020-10-15 13:39:32
+ * @LastEditTime: 2020-10-15 14:32:08
  * @LastEditors: ranli
 -->
 <template>
@@ -108,7 +108,7 @@ let timer;
       }
     },
     Copy() {
-      const clipboard = new Clipboard(".Copy"); // 这里可以理解为选择器，选择上面的复制按钮
+      const clipboard = new Clipboard(".Copy");
       clipboard.on("success", (e) => {
         (this as any).$message.success(" Copy Success !");
         clipboard.destroy();

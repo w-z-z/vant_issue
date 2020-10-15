@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 14:15:36
- * @LastEditTime: 2020-10-14 15:50:33
+ * @LastEditTime: 2020-10-15 14:44:28
  * @LastEditors: ranli
 -->
 <template>
@@ -12,7 +12,7 @@
     :class="['dialog ', 'FLEXROW', visible ? 'flex' : 'none']"
   >
     <div class="dialog-body">
-      <div class="dialog-header">{{ params.title }}</div>
+      <div v-if="params.title" class="dialog-header">{{ params.title }}</div>
       <div class="dialog-content">
         <slot></slot>
       </div>
@@ -26,7 +26,10 @@
         </div>
         <div
           v-if="params.confirm"
-          @click="$emit('ChangeDialog', false)"
+          @click="
+            $emit('ChangeDialog', false);
+            $emit('confirm');
+          "
           class="dialog-comfirm dialog-button"
         >
           {{ params.confirm.text }}
