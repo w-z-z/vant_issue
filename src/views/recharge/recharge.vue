@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 10:56:06
- * @LastEditTime: 2020-10-15 15:04:13
+ * @LastEditTime: 2020-10-15 18:19:40
  * @LastEditors: ranli
 -->
 <template>
@@ -14,18 +14,9 @@
           <!-- <div class="input-box-title">Amount</div> -->
           <div class="input-box FLEXROW amount">
             <span>Rs</span>
-            <input
-              maxlength="10"
-              name="amount"
-              type="text"
-              ref="amount"
-              v-model="amount"
-              v-on:input="
-                amount = amount.replace(/[^\d]/g, '');
-                activeNumber = 0;
-              "
-              class="normal-input"
-            />
+            <div ref="amount" class="normal-input">
+              {{ amount }}
+            </div>
           </div>
         </div>
       </div>
@@ -43,6 +34,13 @@
           {{ item }}
         </div>
       </div>
+      <div class="hint-text">
+        Cooperative merchants please note that the recharge level can be 6-12 or
+        more, but the
+        <span style="color:red">
+          recharge amount must be an integer multiple of 10.</span
+        >
+      </div>
       <br />
       <br />
       <div @click="Recharge" class="submit-button">Recharge</div>
@@ -54,18 +52,14 @@ import { Component, Vue, Provide } from "vue-property-decorator";
 @Component({
   methods: {
     Recharge() {
-      if (!(this as any).amount) {
-        (this as any).$refs["amount"].focus();
-        return false;
-      }
       this.$router.push("BlankInfo");
     },
   },
 })
 export default class Dialog extends Vue {
   @Provide() private amountNumber = [100, 200, 300, 500, 1000, 1500];
-  @Provide() private activeNumber = 0;
-  @Provide() private amount = "";
+  @Provide() private activeNumber = 100;
+  @Provide() private amount = "100";
 }
 </script>
 <style lang="scss">
@@ -92,6 +86,10 @@ export default class Dialog extends Vue {
       vertical-align: middle;
     }
     border-left: 0.1rem solid rgba($color: $primaryColor, $alpha: 0.8);
+  }
+  .hint-text {
+    color: #666;
+    font-size: 0.25rem;
   }
   .choose-number {
     @include _flexRow(space-around);

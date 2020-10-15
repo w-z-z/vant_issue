@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 16:39:07
- * @LastEditTime: 2020-10-15 14:32:08
+ * @LastEditTime: 2020-10-15 18:22:02
  * @LastEditors: ranli
 -->
 <template>
@@ -104,12 +104,13 @@ let timer;
       }
       if (done) {
         (this as any).submitSuss = true;
-        (this as any).countdown(1000);
+        (this as any).countdown(1200);
       }
     },
     Copy() {
       const clipboard = new Clipboard(".Copy");
       clipboard.on("success", (e) => {
+        (this as any).$message.closeAll();
         (this as any).$message.success(" Copy Success !");
         clipboard.destroy();
       });
