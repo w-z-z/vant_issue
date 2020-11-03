@@ -1,10 +1,3 @@
-<!--
- * @Description: Description
- * @Author: ranli
- * @Date: 2020-10-14 16:39:07
- * @LastEditTime: 2020-10-15 18:22:02
- * @LastEditors: ranli
--->
 <template>
   <div class="BlankInfo">
     <div v-if="!submitSuss" class="submit-info">
@@ -52,8 +45,8 @@
         </div>
         <div class="data-list">
           <span>UPI：</span>
-          <span>Ayudhi1@yesbank</span>
-          <span data-clipboard-text="Ayudhi1@yesbank" @click="Copy" class="Copy"
+          <span>*********@icici</span>
+          <span data-clipboard-text="*********@icici" @click="Copy" class="Copy"
             >Copy</span
           >
         </div>
