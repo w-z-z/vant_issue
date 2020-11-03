@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 10:56:06
- * @LastEditTime: 2020-10-14 22:59:04
+ * @LastEditTime: 2020-11-03 10:40:00
  * @LastEditors: ranli
  */
 import Vue from "vue";
@@ -11,15 +11,16 @@ import rechargeAmount from "../views/recharge/recharge.vue";
 import BlankInfo from "../views/recharge/BlankInfo.vue";
 import recharge  from "../views/recharge/index.vue";
 import withdraw from "../views/withdraw.vue";
+import views from "../views/index.vue";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    redirect:"/recharge",
+    component: views, 
     meta:{
-      title:"Recharge"
+      title:"views"
     },
   },
   {

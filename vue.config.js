@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 11:33:05
- * @LastEditTime: 2020-10-14 23:26:55
+ * @LastEditTime: 2020-10-15 18:29:49
  * @LastEditors: ranli
  */
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
     }
   },
   publicPath:"./",
+  productionSourceMap: false, // 生产环境的 source map,
   lintOnSave: false,
   devServer: {
     overlay: {
