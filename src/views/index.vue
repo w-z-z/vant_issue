@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-11-03 10:38:29
- * @LastEditTime: 2020-11-03 14:01:45
+ * @LastEditTime: 2020-11-17 18:47:58
  * @LastEditors: ranli
 -->
 <template>
@@ -34,9 +34,9 @@ export default class Withdraw extends Vue {}
     height: 1rem;
     line-height: 1rem;
     text-align: center;
-    border: 0.01rem solid #674fe1;
+    border: 0.01rem solid $primaryColor;
     color: white;
-    background-color: #674fe1;
+    background-color: $primaryColor;
     margin: 0.4rem 0;
     border-radius: 5px;
     box-shadow: rgb(184, 184, 184) 5px 5px 5px;
