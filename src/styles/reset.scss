@@ -2,7 +2,7 @@
  * @Description: 样式重置文件
  * @Author: ranli
  * @Date: 2020-07-27 17:46:38
- * @LastEditTime: 2020-10-15 13:31:31
+ * @LastEditTime: 2020-12-21 11:19:40
  * @LastEditors: ranli
  */
  *,
@@ -43,7 +43,7 @@
  body {
    flex-direction: column;
    -webkit-overflow-scrolling: touch;
-   font-family: "Microsoft YaHei", "微软雅黑", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", Arial, sans-serif;
+   font-family: -apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
   font-size: .25rem;
