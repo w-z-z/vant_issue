@@ -44,8 +44,8 @@
 						version="1.1"
 						xmlns="http://www.w3.org/2000/svg"
 						p-id="4287"
-						width="14"
-						height="14"
+						width="0.23rem"
+						height="0.23rem"
 						class="icon"
 					>
 						<path
@@ -88,8 +88,8 @@
 						version="1.1"
 						xmlns="http://www.w3.org/2000/svg"
 						p-id="4287"
-						width="14"
-						height="14"
+						width="0.23rem"
+						height="0.23rem"
 					>
 						<path
 							d="M872.329623 147.671158C776.348369 52.389768 649.773091 0.09998 515.399336 0.09998H511.90002c-138.472955 0.999805-267.647725 54.589338-363.82894 150.970514C51.889865 247.351689-0.599883 375.626635 0.09998 512.199961c1.599688 282.144894 231.254833 511.800039 511.90002 511.800039 282.244874 0 511.90002-229.655145 511.90002-511.90002 0-137.873072-53.889475-267.347784-151.570397-364.428822z m-360.329623 661.870728c-28.294474 0-51.190002-22.895528-51.190002-51.190002 0-28.294474 22.895528-51.190002 51.190002-51.190002 28.294474 0 51.190002 22.895528 51.190002 51.190002 0 28.194493-22.895528 51.190002-51.190002 51.190002z m40.991994-181.664518c0 22.595587-18.296426 40.991994-40.991994 40.991993-22.595587 0-40.991994-18.296426-40.991994-40.991993l-40.991994-331.435267c0-45.191174 36.692833-81.884007 81.884008-81.884007s81.884007 36.692833 81.884007 81.884007L552.991994 627.877368z"
@@ -105,12 +105,7 @@
 					ref="transactionNo"
 					maxlength="12"
 					placeholder="Please input 12 Arabic numerals"
-					v-on:input="
-            userinfo.transactionNo = userinfo.transactionNo.replace(
-              /[^\da-zA-Z]/g,
-              ''
-            )
-          "
+					v-on:input="userinfo.transactionNo=userinfo.transactionNo.replace(/[^\d]/g,'')"
 					v-model="userinfo.transactionNo"
 					class="normal-input"
 					name="refNo"
@@ -230,13 +225,18 @@
 	</div>
 </template>
 <script lang="ts">
-	import { Component, Vue, Provide } from 'vue-property-decorator';
+	import { Component, Vue } from 'vue-property-decorator';
 	import clipboard from 'clipboard';
 	declare function require(img: string): string; // 声明
 	import { commit, getUpi } from '@/api/login';
 	import { ImagePreview, Toast, Dialog } from 'vant';
 	import lodash from 'lodash';
 	let status = true;
+	type userInfo = {
+		UPI: string;
+		amount: string;
+		transactionNo: string;
+	};
 	const images = [
 		require('../../assets/example/demo(1).png'),
 		require('../../assets/example/demo(2).png'),
@@ -253,7 +253,7 @@
 					return false;
 				}
 				let _this = this as any;
-				const refNo = _this.userinfo.transactionNo;
+				const refNo: String = _this.userinfo.transactionNo;
 				status = false;
 				commit({ refNo })
 					.then((res) => {
@@ -272,7 +272,7 @@
 						status = true;
 					});
 			}, 3000),
-			handleImagePreview(myImages, index) {
+			handleImagePreview(myImages: Array<string>, index: number) {
 				let _this = this as any;
 				ImagePreview({
 					images: myImages,
@@ -311,24 +311,24 @@
 					forbidClick: true,
 					duration: 0,
 				});
-				getUpi().then((res) => {
+				getUpi().then((res: any) => {
 					loding.clear();
-					_this.userinfo.UPI = res.data;
+					_this.userinfo.UPI = res.data || '***********@icici';
 				});
 			},
 		},
 	})
 	export default class Recharge extends Vue {
-		@Provide() private visible = false;
-		@Provide() private visible2 = false;
-		@Provide() private showCopyHint = false;
-		@Provide() private images = images;
-		@Provide() private infoListTitle = {
+		private visible: boolean = false;
+		private visible2: boolean = false;
+		private showCopyHint: boolean = false;
+		private images: string[] = images;
+		private infoListTitle: userInfo = {
 			amount: 'Recharge Amount：',
 			UPI: 'UPI：',
 			transactionNo: 'Ref No：',
 		};
-		@Provide() private userinfo = {
+		private userinfo: userInfo = {
 			UPI: '***********@icici',
 			amount: '',
 			transactionNo: '',

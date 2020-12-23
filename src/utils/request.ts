@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-12-21 13:56:33
- * @LastEditTime: 2020-12-21 18:08:51
+ * @LastEditTime: 2020-12-23 11:31:03
  * @LastEditors: ranli
  */
 import axios from 'axios';
@@ -10,8 +10,10 @@ import store from "@/store/index";
 import router from "@/router";
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
 import { Dialog ,Notify } from 'vant';
+const is_add_api = Boolean(process.env.VUE_APP_ADD_API);
+const baseURL =  process.env.VUE_APP_BASE_API 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: baseURL,
   timeout:10000
 })
 service.interceptors.request.use(config => {
@@ -23,11 +25,11 @@ service.interceptors.request.use(config => {
     Promise.reject(error)
 })
 // 响应拦截器
-service.interceptors.response.use(res => {
+service.interceptors.response.use((res) => {
     // 未设置状态码则默认成功状态
-    const code = res.data.code || 200;
+    const code:number = res.data.code || 200;
     // 获取错误信息
-    const msg =res.data.msg
+    const msg:string =res.data.msg
     //登录失效
     if (code === 403) {
       Dialog.alert({
@@ -76,4 +78,13 @@ service.interceptors.response.use(res => {
   }
 )
 
-export default service;
+ function noServers(){
+   return new Promise((r,j)=>{
+    r({
+      code:"xxx",
+      data:""
+    })
+   })
+ }
+
+export default is_add_api?service:noServers;

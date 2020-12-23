@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-12-21 13:52:52
- * @LastEditTime: 2020-12-21 15:59:57
+ * @LastEditTime: 2020-12-23 11:31:51
  * @LastEditors: ranli
  */
 /*
@@ -29,7 +29,7 @@ const user = {
       const username = userInfo.username.trim()
       const password = userInfo.password
       return new Promise((resolve, reject) => {
-        login({username,password}).then(res => {
+        login({username,password}).then((res:any) => {
           commit('SET_TOKEN', res.data)
           resolve(res.data)
         }).catch(error => {
