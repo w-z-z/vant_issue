@@ -2,7 +2,7 @@
  * @Description: Description
  * @Author: ranli
  * @Date: 2020-10-14 10:56:06
- * @LastEditTime: 2020-12-23 13:37:47
+ * @LastEditTime: 2020-12-23 13:47:53
  * @LastEditors: ranli
 -->
 
@@ -165,10 +165,13 @@
 			},
 			beneficaryName: {
 				title: 'Beneficary Name',
-				maxlength: 30,
+				maxlength: 40,
 				show: true,
-				placeholder: 'Max length 30 Character',
-				rules: [{ required: true, message: 'Please enter the Beneficary Name' }],
+				placeholder: '4 to 100 characters',
+				rules: [
+					{ required: true, message: 'Please enter the Beneficary Name' },
+					{ pattern: /.{4,40}$/, message: 'Beneficary Name Format Error' },
+				],
 			},
 			contact: {
 				title: 'Client Remark',
@@ -210,7 +213,7 @@
 				placeholder: '3 to 100 characters',
 				rules: [
 					{ required: true, message: 'Please enter the VpaAddress' },
-					{ pattern: /[a-zA-Z0-9@]{3,100}$/, message: '3 to 100 characters' },
+					{ pattern: /[a-zA-Z0-9@]{3,100}$/, message: 'VpaAddress Format Error' },
 				],
 				maxlength: 100,
 			},
